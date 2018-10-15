@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CsvLoader": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\RodrigoCar\\Downloads\\Shops_and_DataStorage\\Data_20181003.log"
+    }
+  }
+}
