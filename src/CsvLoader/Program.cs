@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Threading.Tasks;
     using CsvLoader.Models;
@@ -37,16 +38,27 @@
             Configuration = builder.Build();
             string connectionstring = Configuration["ConnectionString"];
             
+            Stopwatch stopWatch = Stopwatch.StartNew();
+
             try
             {
                 IList<BigStorage> bigStorageList = await FileReader.CsvReader(filePath, new LineParser()).ConfigureAwait(false);
                 await BulkInsert.InsertRecordsSqlBulkCopy(connectionstring, bigStorageList);
                 Console.WriteLine("CSV Uploaded to DB!");
-                Console.WriteLine("Press enter to end! :)");
+                Console.WriteLine("It's fast!");
+                Console.WriteLine(":)");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                Console.WriteLine("Are you sure about the ConnectionString?");
+                Console.WriteLine(":(");
+            }
+            finally
+            {
+                stopWatch.Stop();
+                Console.WriteLine("Elapsed time {0} ms", stopWatch.ElapsedMilliseconds);
+                Console.WriteLine("Press enter to end!");
             }
         }
     }
