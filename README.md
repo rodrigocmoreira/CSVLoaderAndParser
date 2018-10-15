@@ -22,4 +22,10 @@ Then
 dotnet run "C:\YourFilePathHere\FileName"
 ```
 
-## Query you database and check the results
+Or from the solution folder using bash or powershell
+
+```sh
+dotnet run "C:\YourFilePathHere\FileName" --project src/CsvLoader/CSVLoader.csproj
+```
+
+## Query your database and check the results
